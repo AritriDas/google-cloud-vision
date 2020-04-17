@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>Extract Handwritten Text | Google Cloud Vision</title>
+  <link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css'>
+<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css'>
+<link href="https://fonts.googleapis.com/css?family=Courgette&display=swap" rel="stylesheet">
+ <link href="https://fonts.googleapis.com/css?family=Neucha&display=swap" rel="stylesheet"> 
+ <link href="https://fonts.googleapis.com/css?family=Changa+One&display=swap" rel="stylesheet"> 
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Zhi+Mang+Xing&display=swap" rel="stylesheet"> 
+<style>
+.dropify-font-upload:before, .dropify-wrapper .dropify-message span.file-icon:before {
+    content: '\e800';
+}
+.dropify-font:before, .dropify-wrapper .dropify-message span.file-icon:before, .dropify-wrapper .dropify-preview .dropify-infos .dropify-infos-inner p.dropify-filename span.file-icon:before, [class*=" dropify-font-"]:before, [class^=dropify-font-]:before {
+    font-family: dropify;
+    font-style: normal;
+    font-weight: 550;
+    speak: none;
+    display: inline-block;
+    text-decoration: inherit;
+    width: 1em;
+    margin-left: .2em;
+    margin-right: .2em;
+    text-align: center;
+    font-variant: normal;
+    text-transform: none;
+    line-height: 1em;
+    font-size:8rem;
+}
+</style>
+</head>
+<body>
+ <nav class="lime darken-1">
+    <div class="nav-wrapper">
+      <div style="margin-left:8%;margin-right:6%">
+<span style="font-family: 'Zhi Mang Xing', cursive;vertical-align: top;color:white;font-size:2rem">Google Cloud Vision</span></a>
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        <li><a href="#how_to" style="font-size:1.4rem;font-family: 'Times New Roman';">How to Use</a></li>
+      </ul>
+</div>
+    </div>
+  </nav>
+<section>
+<div class="row">
+<div class="col l6 offset-l1 m8 s12" style="margin-top:4%">
+<div class="card-panel hoverable z-depth-1" style="padding:0px">
+<form action="" class="row" id="fileForm">
+    <input id="file-input" type="file" class="dropify" data-default-file="" data-height="300" data-max-file-size="50M" data-allowed-file-extensions="png jpeg jpg" name="fileField">
+</form>
+</div>
+</div>
+<div class="col l5 m4 s12" style="margin-top:4%;">
+<div class="card-panel" id="output" style="font-family: 'Arapey', serif;">
+<h4 class="center lime-text text-darken-4" style="font-family: 'Neucha', cursive;">Output</h4>
+</div>
+</div>
+</section>
+<section>
+<div class="row" style="margin-left:2%; margin-right:2%">
+<div class="col l6 m6 s12">
+<div class="card-panel">
+<h4 style="font-family: 'Changa One', cursive;" id="how_to">How to use?</h4>
+<p class="flow-text">1. Click on the above file upload box and choose the file you want to extract handwritten texts from.</p>
+</div>
+</div>
+<div class="col l6 m6 s12">
+<div class="card-panel">
+<h4 style="font-family: 'Changa One', cursive;" id="features">Features</h4>
+<div class="center"><i class="material-icons medium blue-text">backup</i>&nbsp;&nbsp; <i class="material-icons medium green-text">language</i>&nbsp;&nbsp; <i class="material-icons medium blue-grey-text">tablet_android</i> </div>
+</div>
+</div>
+</div>
+</section>
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js'></script>
+<script>
+  const output=document.getElementById("output");
+  $(document).ready(function(){
+    var drEvent = $(".dropify").dropify({
+   messages:{
+   'default': `<h5 class='lime-text text-darken-3' style="font-family: 'Courgette', cursive;">Drag and drop a file or click to upload a file</h5>Language supported: English, Telugu and Urdu.`,
+   'replace':"<h5 class='white-text'>Drag and drop or click to replace with new file</h5>",
+   'remove':  'Remove  file',
+   'error':   'Oops, something went wrong.'
+   }
+   });
+   drEvent.on('dropify.beforeClear', function(event, element){
+       opt=confirm("Do you really want to delete \"" + element.filename + "\" ?");
+   if(opt)
+   {
+   output.innerHTML=`<h4 class='center lime-text text-darken-4' style="font-family: 'Neucha', cursive;">Progress</h4>`
+   }
+   else
+   {
+   
+   }
+   });
+   });
+   
+</script>
+</body>
+</html>
+
